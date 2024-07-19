@@ -36,5 +36,5 @@ class Solution:
                 if len(res) == k:
                     return res
         
-        # print(buckets)
+        print(buckets)
 test = Solution().topKFrequent(nums = [1,1,1,2,2,3,7], k = 2)
