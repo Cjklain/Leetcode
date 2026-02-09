@@ -35,5 +35,46 @@ class Solution:
 test = Solution()
 test1 = test.isAnagram(s="anagram", t="nagaram")
 test2 = test.isAnagram(s="rat", t="car")
-print(test1)
-print(test2)
+# print(test1)
+# print(test2)
+
+
+class Solution3:
+    def isAnagram(self, s: str, t: str) -> bool:
+        asd = "zxc"
+        # asd2 = slice(len(asd), 0, -1)
+        # print(asd[::-1])
+        if s[::-1] == t:
+            return True
+        else:
+            return False
+
+
+# test3 = Solution3()
+# test5 = test3.isAnagram(s="anagram", t="nagaram")
+# print(test5)
+
+
+class Solution4:
+    def isAnagram(self, s: str, t: str) -> bool:
+        if len(s) != len(t) or len(s) >= 5 * 100000:
+            return False
+        tempS = {}
+        tempT = {}
+
+        for letter in s:
+            tempS[letter] = tempS.get(letter, 0) + 1
+
+        for letter in t:
+            tempT[letter] = tempT.get(letter, 0) + 1
+
+        print(tempS, tempT)
+
+        if tempS == tempT:
+            return True
+
+        return False
+
+
+asd = Solution4().isAnagram("racecar", "carrace")
+print(asd)
