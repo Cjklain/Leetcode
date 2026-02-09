@@ -71,33 +71,49 @@ test = Solution4()
 
 # print(test.containsDuplicate(nums=[2, 14, 18, 22, 22]))
 
+
 class Solution5:
     def containsDuplicate(self, nums: list[int]) -> bool:
-        
+
         collection = set()
-        
+
         for num in nums:
             collection.add(num)
-        
+
         if len(collection) != len(nums):
             return True
         else:
             return False
-        
+
+
 # asd = Solution5().containsDuplicate([1,1,3])
 
 
 class Solution6:
     def containsDuplicate(self, nums: list[int]) -> bool:
-        
+
         collection = defaultdict()
-        
+
         for num in nums:
             if num in collection:
                 return True
             collection[num] = 1
-            
+
         return False
 
-        
-asd = Solution6().containsDuplicate([1,1,3])
+
+# asd = Solution6().containsDuplicate([1,1,3])
+
+
+class Solution7:
+    def containsDuplicate(self, nums: list[int]) -> bool:
+        test = set()
+        for num in nums:
+            if num in test:
+                return True
+            test.add(num)
+        return False
+
+
+asd = Solution7().containsDuplicate([1, 2, 3, 1])
+print(asd)
