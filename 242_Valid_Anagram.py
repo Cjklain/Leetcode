@@ -62,13 +62,12 @@ class Solution4:
         tempS = {}
         tempT = {}
 
+        # maybe one loop will be better
         for letter in s:
             tempS[letter] = tempS.get(letter, 0) + 1
 
         for letter in t:
             tempT[letter] = tempT.get(letter, 0) + 1
-
-        print(tempS, tempT)
 
         if tempS == tempT:
             return True
