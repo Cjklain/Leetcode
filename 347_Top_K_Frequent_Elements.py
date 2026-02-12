@@ -16,25 +16,55 @@
 
 # test_old = Solution().topKFrequent(nums = [1,1,1,2,2,3], k = 2)
 
+# class Solution:
+#     def topKFrequent(self, nums: list[int], k: int) -> list[int]:
+#         count = {}
+#         buckets = [ [] for i in range(len(nums) + 1) ]
+
+#         for num in nums:
+#             count[num] = 1 + count.get(num, 0)
+
+#         for n, c in count.items():
+#             buckets[c].append(n)
+
+#         res = []
+
+#         for bucket in range(len(buckets) - 1, 0, -1):
+#             for n in (buckets[bucket]):
+#                 print(n)
+#                 res.append(n)
+#                 if len(res) == k:
+#                     return res
+
+#         print(buckets)
+# test = Solution().topKFrequent(nums = [1,1,1,2,2,3,7], k = 2)
+
+
 class Solution:
     def topKFrequent(self, nums: list[int], k: int) -> list[int]:
-        count = {}
-        buckets = [ [] for i in range(len(nums) + 1) ]
 
+        counted = {}
+        heap = [[] for _ in range(len(nums) + 1)]
         for num in nums:
-            count[num] = 1 + count.get(num, 0)
+            if num in counted:
+                counted[num] += 1
+            else:
+                counted[num] = 1
 
-        for n, c in count.items():
-            buckets[c].append(n)
-        
+        for key, value in counted.items():
+            heap[value].append(key)
+
         res = []
-
-        for bucket in range(len(buckets) - 1, 0, -1):
-            for n in (buckets[bucket]):
-                print(n)
+        for i in range(len(heap) - 1, 0, -1):
+            for n in heap[i]:
                 res.append(n)
                 if len(res) == k:
                     return res
-        
-        print(buckets)
-test = Solution().topKFrequent(nums = [1,1,1,2,2,3,7], k = 2)
+
+
+# group list in hashmap
+# find k times max
+# resturn
+
+asd = Solution().topKFrequent([1, 2, 2, 3, 3, 3, 3], 2)
+print(asd)
