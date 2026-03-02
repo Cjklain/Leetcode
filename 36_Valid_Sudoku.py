@@ -23,12 +23,35 @@ class Solution:
         return True
 
 
-test = Solution().isValidSudoku(
+class Solution2:
+    def isValidSudoku(self, board: list[list[str]]) -> bool:
+        col = defaultdict(set)
+        row = defaultdict(set)
+        grid = defaultdict(set)
+
+        for i, rows in enumerate(board):
+            for j, element in enumerate(rows):
+                if element == ".":
+                    continue
+                if (
+                    element in row[i]
+                    or element in col[j]
+                    or element in grid[f"{int(i / 3)}{int(j / 3)}"]
+                ):
+                    return False
+                grid[f"{int(i / 3)}{int(j / 3)}"].add(element)
+                row[i].add(element)
+                col[j].add(element)
+
+        return True
+
+
+test = Solution2().isValidSudoku(
     board=[
         ["8", "3", ".", ".", "7", ".", ".", ".", "."],
         ["6", ".", ".", "1", "9", "5", ".", ".", "."],
-        [".", "9", "8", ".", ".", ".", ".", "6", "."],
-        ["8", ".", ".", ".", "6", ".", ".", ".", "3"],
+        [".", "5", "5", ".", ".", ".", ".", "6", "."],
+        ["5", ".", ".", ".", "6", ".", ".", ".", "3"],
         ["4", ".", ".", "8", ".", "3", ".", ".", "1"],
         ["7", ".", ".", ".", "2", ".", ".", ".", "6"],
         [".", "6", ".", ".", ".", ".", "2", "8", "."],
@@ -36,6 +59,4 @@ test = Solution().isValidSudoku(
         [".", ".", ".", ".", "8", ".", ".", "7", "9"],
     ]
 )
-
-
 print(test)
