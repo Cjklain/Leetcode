@@ -18,4 +18,3 @@ class Solution:
 
 
 asd = Solution().isValid("([)]")
-print(asd)
