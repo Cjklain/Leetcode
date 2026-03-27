@@ -1,0 +1,24 @@
+import operator
+
+
+class Solution:
+    def evalRPN(self, tokens: list[str]) -> int:
+        stack = []
+        mapping = {
+            "+": operator.add,
+            "-": operator.sub,
+            "*": operator.mul,
+            "/": operator.truediv,
+        }
+        for item in tokens:
+            if item in mapping:
+                first = stack.pop()
+                second = stack.pop()
+                stack.append(int(mapping[item](second, first)))
+            else:
+                stack.append(int(item))
+        return stack[-1]
+
+
+asd = Solution()
+asd.evalRPN(["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"])
