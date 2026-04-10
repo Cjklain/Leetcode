@@ -17,8 +17,48 @@ class Solution:
                 stack.append(int(mapping[item](second, first)))
             else:
                 stack.append(int(item))
+
+        print(stack[-1])
         return stack[-1]
 
 
 asd = Solution()
+asd.evalRPN(["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"])
+
+
+class Solution2:
+    def evalRPN(self, tokens: list[str]) -> int:
+        stack = []
+
+        for t in tokens:
+            if t == "+":
+                print("asd")
+                one = stack.pop()
+                two = stack.pop()
+                stack.append(two + one)
+            elif t == "-":
+                print("asd")
+                one = stack.pop()
+                two = stack.pop()
+                stack.append(two - one)
+            elif t == "*":
+                print("asd")
+                one = stack.pop()
+                two = stack.pop()
+                stack.append(two * one)
+            elif t == "/":
+                print("asd")
+                one = stack.pop()
+                two = stack.pop()
+                stack.append(int(two / one))
+            else:
+                stack.append(int(t))
+
+        return stack[-1]
+
+        print(stack[-1])
+        print("asd")
+
+
+asd = Solution2()
 asd.evalRPN(["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"])
