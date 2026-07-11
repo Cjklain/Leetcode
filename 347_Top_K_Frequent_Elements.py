@@ -66,5 +66,44 @@ class Solution:
 # find k times max
 # resturn
 
-asd = Solution().topKFrequent([1, 2, 2, 3, 3, 3, 3], 2)
+
+class Solution2:
+    def topKFrequent(self, nums: list[int], k: int) -> list[int]:
+        data = {}
+        freq = [[] for i in range(len(nums) + 1)]
+        for item in nums:
+            if item in data:
+                data[item] += 1
+            else:
+                data[item] = 1
+
+        for num in data:
+            freq[data[num]].append(num)
+
+        result = []
+
+        for element in range(len(freq) - 1, 0, -1):
+            temp = freq[element]
+            for el in temp:
+                result.append(el)
+                if len(result) == k:
+                    return result
+        # print(freq)
+
+        print(result)
+        # for el in reversed(freq):
+        #     temp = len(el)
+        #     i = 0
+        #     while k > 0 and temp > i:
+        #         result.append(el[i])
+        #         i = i + 1
+        #         k = k - 1
+
+        return result
+        # print(result)
+        # print(freq)
+        # print(data)
+
+
+asd = Solution2().topKFrequent([1, 2, 2, 3, 3, 3], 2)
 print(asd)
