@@ -59,4 +59,43 @@ test = Solution2().isValidSudoku(
         [".", ".", ".", ".", "8", ".", ".", "7", "9"],
     ]
 )
-print(test)
+# print(test)
+
+
+class Solution3:
+    def isValidSudoku(self, board: list[list[str]]) -> bool:
+        data = defaultdict(list)
+        col_data = defaultdict(list)
+        row_data = defaultdict(list)
+
+        for i, row in enumerate(board):
+            for j, el in enumerate(row):
+                if el == ".":
+                    continue
+                if el in col_data[i] or el in row_data[j]:
+                    return False
+                else:
+                    col_data[i].append(el)
+                    row_data[j].append(el)
+                if el in data[f"{i//3}{j//3}"]:
+                    return False
+                else:
+                    data[f"{i//3}{j//3}"].append(el)
+
+        return True
+
+
+test3 = Solution3().isValidSudoku(
+    board=[
+        [".", ".", "4", ".", ".", ".", "6", "3", "."],
+        [".", ".", ".", ".", ".", ".", ".", ".", "."],
+        ["5", ".", ".", ".", ".", ".", ".", "9", "."],
+        [".", ".", ".", "5", "6", ".", ".", ".", "."],
+        ["4", ".", "3", ".", ".", ".", ".", ".", "1"],
+        [".", ".", ".", "7", ".", ".", ".", ".", "."],
+        [".", ".", ".", "5", ".", ".", ".", ".", "."],
+        [".", ".", ".", ".", ".", ".", ".", ".", "."],
+        [".", ".", ".", ".", ".", ".", ".", ".", "."],
+    ]
+)
+print(test3)
