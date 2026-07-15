@@ -51,5 +51,33 @@ class Solution2:
         return longest
 
 
-ads = Solution2().longestConsecutive([0, 3, 2, 5, 4, 6, 1, 1])
-print(ads)
+# ads = Solution2().longestConsecutive([0, 3, 2, 5, 4, 6, 1, 1])
+# print(ads)
+
+
+class Solution2:
+    def longestConsecutive(self, nums: list[int]) -> int:
+        data = set()
+
+        for num in nums:
+            data.add(num)
+
+        max = 0
+
+        for el in data:
+            if el - 1 in data:
+                continue
+            else:
+                i = 1
+                while el + i in data:
+                    i += 1
+                if i > max:
+                    max = i
+        return max
+        # print(data)
+        print(max)
+        # print("asd")
+
+
+adx = Solution2().longestConsecutive([2, 20, 4, 10, 3, 4, 5])
+print(adx)
