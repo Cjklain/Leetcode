@@ -60,4 +60,62 @@ class Solution:
         print(result)
 
 
-asd = Solution().productExceptSelf([1, 2, 4, 6])
+# asd = Solution().productExceptSelf([1, 2, 4, 6])
+
+
+class Solution2:
+    def productExceptSelf(self, nums: list[int]) -> list[int]:
+        before = [0 for _ in range(len(nums))]
+        after = [0 for _ in range(len(nums))]
+        result = [0 for _ in range(len(nums))]
+
+        for i, num in enumerate(nums):
+            if i == 0:
+                after[i] = 1
+            else:
+
+                after[i] = after[i - 1] * nums[i - 1]
+
+        for i in range(len(nums) - 1, -1, -1):
+
+            if len(nums) == i + 1:
+                before[i] = 1
+            else:
+                before[i] = before[i + 1] * nums[i + 1]
+
+        for x in range(len(after)):
+            result[x] = after[x] * before[x]
+
+        return result
+
+
+zxc = Solution2().productExceptSelf([1, 2, 4, 6])
+
+
+class Solution3:
+    def productExceptSelf(self, nums: list[int]) -> list[int]:
+        post = []
+        pre = [0 for _ in range(len(nums))]
+
+        for i, num in enumerate(nums):
+            if i == 0:
+                post.append(1)
+            else:
+                post.append(post[i - 1] * nums[i - 1])
+
+        for i in range(len(nums) - 1, -1, -1):
+            if i == len(nums) - 1:
+                pre[i] = 1
+            else:
+                pre[i] = pre[i + 1] * nums[i + 1]
+
+        res = []
+
+        for i in range(len(post)):
+            res.append(pre[i] * post[i])
+
+        return res
+
+
+zxc = Solution3().productExceptSelf([-1, 0, 1, 2, 3])
+print(zxc)
