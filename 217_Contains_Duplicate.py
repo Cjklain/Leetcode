@@ -116,4 +116,39 @@ class Solution7:
 
 
 asd = Solution7().containsDuplicate([1, 2, 3, 1])
-print(asd)
+# print(asd)
+
+
+# 12min
+class Solution8:
+    def containsDuplicate(self, nums: list[int]) -> bool:
+        data = {}
+
+        for num in nums:
+            if num in data:
+                return True
+            else:
+                data[num] = 1
+
+        return False
+
+
+# asd2 = Solution8()
+# print(asd2.containsDuplicate([1, 2, 3, 5]))
+
+
+class Solution9:
+    def hasDuplicate(self, nums: list[int]) -> bool:
+        helper = {}
+
+        for num in nums:
+            if num in helper:
+                return True
+            else:
+                helper[num] = 1
+
+        return False
+
+
+asd4 = Solution9().hasDuplicate([1, 2, 3, 3])
+print(asd4, "asd")
