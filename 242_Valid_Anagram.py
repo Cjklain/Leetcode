@@ -77,3 +77,68 @@ class Solution4:
 
 asd = Solution4().isAnagram("racecar", "carrace")
 print(asd)
+
+
+# Pierwszy pomysł, sortowanie ale to kosztuje log n, więc spróbujmy pętlami z liczeniem
+class Solution5:
+    def isAnagram(self, s: str, t: str) -> bool:
+        first = {}
+        second = {}
+
+        if len(s) != len(t):
+            return False
+
+        for letter in s:
+            if letter in first:
+                first[letter] += 1
+            else:
+                first[letter] = 1
+
+        for lette2 in t:
+            if lette2 in second:
+                second[lette2] += 1
+            else:
+                second[lette2] = 1
+
+        # for key in first:
+        #     if key in second and second[key] == first[key]:
+        #         del second[key]
+
+        # return not bool(second)
+
+        if first == second:
+            return True
+        else:
+            return True
+
+
+# asd = Solution5().isAnagram("ab", "b")
+# print(asd)
+
+
+class Solution56:
+    def isAnagram(self, s: str, t: str) -> bool:
+        first = {}
+        second = {}
+
+        if len(s) != len(t):
+            return False
+        for letter in s:
+            if first.get(letter):
+                first[letter] += 1
+            else:
+                first[letter] = 1
+
+        for letter in t:
+            if second.get(letter):
+                second[letter] += 1
+            else:
+                second[letter] = 1
+
+        print(first, second)
+
+        return first == second
+
+
+asd2 = Solution56().isAnagram("bbcc", "ccbc")
+print(asd2, "asd2112")
