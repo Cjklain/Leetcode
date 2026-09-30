@@ -42,8 +42,92 @@ class Solution2:
         return result
 
 
-asd = Solution2().groupAnagrams(["act", "pots", "tops", "cat", "stop", "haat"])
-print(asd)
+# asd = Solution2().groupAnagrams(["act", "pots", "tops", "cat", "stop", "haat"])
+# print(asd)
 # print(("asd", "asd") == ("asd", "asd"))
 
 # there is a place for impovments
+
+
+class Solution3:
+    def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
+        closet = {}
+        result = []
+        for str in strs:
+            temp = "".join(sorted(str))
+            if temp in closet:
+                closet[temp].append(str)
+            else:
+                closet[temp] = [str]
+
+        for item in closet.values():
+            result.append(item)
+
+        return result
+
+
+qwe = Solution3().groupAnagrams(["act", "pots", "tops", "cat", "stop", "hat"])
+# print(qwe)
+
+
+class Solution4:
+    def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
+        d = {}
+
+        for s in strs:
+            print(sorted(s))
+
+        for s in strs:
+            sor = "".join(sorted(s))
+            if sor in d:
+                d[sor].append(s)
+            else:
+                d[sor] = [s]
+
+        result = []
+
+        for i in d:
+            result.append(d[i])
+
+        return result
+
+        print(result)
+
+
+# qwe = Solution4().groupAnagrams(["act", "pots", "tops", "cat", "stop", "hat"])
+# print(qwe)
+
+from collections import defaultdict
+
+
+class Solution5:
+    def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
+        storage = defaultdict(list)
+
+        for str in strs:
+            sorted_str = "".join(sorted(str))
+            storage[sorted_str].append(str)
+
+        return list(storage.values())
+
+
+qwedqw = Solution5().groupAnagrams([""])
+print(qwedqw)
+
+
+class Solution5:
+    def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
+        storage = defaultdict(list)
+
+        for str in strs:
+            letter_key = [0] * 26
+            for letter in str:
+                letter_key[ord(letter) - ord("a")] += 1
+            storage[tuple(letter_key)].append(str)
+
+        print(storage)
+        return list(storage.values())
+
+
+qwedqw = Solution5().groupAnagrams(["act", "pots", "tops", "cat", "stop", "hat"])
+print(qwedqw)
