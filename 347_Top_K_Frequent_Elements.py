@@ -107,3 +107,76 @@ class Solution2:
 
 asd = Solution2().topKFrequent([1, 2, 2, 3, 3, 3], 2)
 print(asd)
+
+
+class Solution3:
+    def topKFrequent(self, nums: list[int], k: int) -> list[int]:
+        print("asd")
+        counter = {}
+
+        helper_arr = [[] for _ in range(len(nums)) + 1]
+
+        for num in nums:
+            if num in counter:
+                counter[num] += 1
+            else:
+                counter[num] = 1
+
+        print(counter)
+
+        for val in counter:
+            helper_arr[counter[val]].append(val)
+
+        print(helper_arr)
+
+        res = []
+
+        print(len(helper_arr))
+        print(range(len(helper_arr)))
+
+        for x in range(len(helper_arr)):
+            print(x)
+
+        for i in range(len(helper_arr) - 1, 0, -1):
+            for n in helper_arr[i]:
+                res.append(n)
+                if k == len(res):
+                    return res
+
+
+# zxc = Solution3().topKFrequent([1, 2, 2, 3, 3, 3, 3], 2)
+
+
+class Solution4:
+    def topKFrequent(self, nums: list[int], k: int) -> list[int]:
+        result = []
+        data = [None] * (len(nums) + 1)
+        helper = {}
+
+        for num in nums:
+            if helper.get(num):
+                helper[num] += 1
+            else:
+                helper[num] = 1
+
+        print(result, data, helper)
+
+        for asd in helper:
+            if data[helper[asd]]:
+                print(data[helper[asd]])
+                data[helper[asd]].append(asd)
+            else:
+                data[helper[asd]] = [asd]
+
+        for el in data[::-1]:
+            if el:
+                for e in el[::-1]:
+                    result.append(e)
+                    k = k - 1
+
+                    if k <= 0:
+                        return result
+
+
+zxc2 = Solution4().topKFrequent([7, 7], 1)
+print(zxc2)
