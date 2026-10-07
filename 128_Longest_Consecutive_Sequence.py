@@ -80,4 +80,31 @@ class Solution2:
 
 
 adx = Solution2().longestConsecutive([2, 20, 4, 10, 3, 4, 5])
-print(adx)
+# print(adx)
+
+
+class Solution3:
+    def longestConsecutive(self, nums: list[int]) -> int:
+        data_set = set()
+
+        for el in nums:
+            data_set.add(el)
+
+        max_seq = 0
+
+        for set_el in data_set:
+            if set_el - 1 not in data_set:
+                el_copy = set_el
+                i = 0
+                while el_copy in data_set:
+                    i = i + 1
+                    el_copy = el_copy + 1
+                    if i > max_seq:
+                        max_seq = i
+
+        return max_seq
+        # print("asd")
+
+
+qwe2 = Solution3().longestConsecutive([0, 3, 2, 5, 4, 6, 1, 1])
+print(qwe2)
