@@ -1,29 +1,28 @@
 import operator
 
+# class Solution:
+#     def evalRPN(self, tokens: list[str]) -> int:
+#         stack = []
+#         mapping = {
+#             "+": operator.add,
+#             "-": operator.sub,
+#             "*": operator.mul,
+#             "/": operator.truediv,
+#         }
+#         for item in tokens:
+#             if item in mapping:
+#                 first = stack.pop()
+#                 second = stack.pop()
+#                 stack.append(int(mapping[item](second, first)))
+#             else:
+#                 stack.append(int(item))
 
-class Solution:
-    def evalRPN(self, tokens: list[str]) -> int:
-        stack = []
-        mapping = {
-            "+": operator.add,
-            "-": operator.sub,
-            "*": operator.mul,
-            "/": operator.truediv,
-        }
-        for item in tokens:
-            if item in mapping:
-                first = stack.pop()
-                second = stack.pop()
-                stack.append(int(mapping[item](second, first)))
-            else:
-                stack.append(int(item))
-
-        print(stack[-1])
-        return stack[-1]
+#         print(stack[-1])
+#         return stack[-1]
 
 
-asd = Solution()
-asd.evalRPN(["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"])
+# asd = Solution()
+# asd.evalRPN(["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"])
 
 
 class Solution2:
@@ -60,5 +59,37 @@ class Solution2:
         print("asd")
 
 
-asd = Solution2()
-asd.evalRPN(["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"])
+# asd = Solution2()
+# asd.evalRPN(["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"])
+
+
+class Solution3:
+    def evalRPN(self, tokens: list[str]) -> int:
+        stack_helper = []
+        set_help = ("+", "-", "/", "*")
+        for token in tokens:
+            if token in set_help:
+                top_value = stack_helper.pop()
+                second_value = stack_helper.pop()
+                temp = 0
+                if token == "+":
+                    temp = second_value + top_value
+                if token == "-":
+                    temp = second_value - top_value
+                if token == "/":
+                    temp = int(second_value / top_value)
+                    print(temp)
+                if token == "*":
+                    temp = second_value * top_value
+                stack_helper.append(temp)
+            else:
+                stack_helper.append(int(token))
+
+        return stack_helper.pop()
+
+
+asds = Solution3()
+result = asds.evalRPN(
+    ["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"]
+)
+print(result)
